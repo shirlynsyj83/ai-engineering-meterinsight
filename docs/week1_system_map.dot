@@ -1,0 +1,25 @@
+digraph MeterInsight {
+    graph [fontname="DejaVu Sans", label="MeterInsight — Proposed AI Engineering System", labelloc=t, fontsize=21, bgcolor="#ffffff", pad="0.33", ranksep="0.55", nodesep="0.35", splines=ortho];
+    node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, penwidth=1.0, margin="0.20,0.12", fillcolor="#edf5ff", color="#8bb3d5"];
+    edge [color="#6b829c", arrowsize=0.7, penwidth=1.3];
+    user [label="Target user\nSupport trainee / facilitator", fillcolor="#e4eaff"];
+    query [label="Question + demo\nconsumption case", fillcolor="#f3f7ff"];
+    sep [label="Request router\nQuestion / numeric / both", fillcolor="#e7e5ff"];
+    data [label="Public sample time series\nUK-DALE (small subset)", fillcolor="#fff5d9"];
+    validate [label="Data quality checks\nUnits • missing periods • coverage", fillcolor="#fff5d9"];
+    features [label="Daily usage features\n+ weekday baseline", fillcolor="#fff5d9"];
+    model [label="Isolation Forest\nUnusual-pattern screening", fillcolor="#fff5d9"];
+    docs [label="3 official Sarawak Energy\npublic documents", fillcolor="#e1f8ef"];
+    retrieve [label="Keyword/semantic retrieval\nEvidence + URL/source section", fillcolor="#e1f8ef"];
+    verify [label="Guardrails + evidence validator\nNo fault/bill diagnosis", fillcolor="#fae9e9"];
+    answer [label="Response to user\nObserved data • grounded guidance\nunknowns • citations", fillcolor="#def4e9"];
+    review [label="Held-out evaluation\nDetection • groundedness •\nabstention • latency", fillcolor="#e9eef8"];
+    user -> query -> sep;
+    sep -> validate;
+    data -> validate;
+    validate -> features -> model -> verify;
+    sep -> retrieve;
+    docs -> retrieve -> verify;
+    verify -> answer -> review;
+    {rank=same; docs; data}
+}
